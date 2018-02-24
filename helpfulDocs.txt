@@ -1,0 +1,6 @@
+How to make webextensions on Firefox - this document details the process & the JavaScript APIs 
+https://developer.mozilla.org/en-US/Add-ons/WebExtensions 
+
+
+
+
