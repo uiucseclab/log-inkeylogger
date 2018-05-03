@@ -10,11 +10,19 @@ The idea behind our project was to make a keylogger that went beyond the usual '
 
 #### Timed, on-press and on-click capturing of keys
 
+Whenever a user arrived on a webpage, the moment they started typing a timer will start. Every 10 seconds from the start of this timer, the users keypresses and a screenshot would be logged and sent to our server. This is based on the information gleaned from various resources that the average user only spends about 10 seconds on a website before moving on. If the ENTER or TAB keys were pressed or a mouse-click event occured, the keypresses and screenshot would be sent while the 10-second timer would also be reset. 
+
 #### Screenshots
+Due to the difficulty and bandwidth required to send a screenshot of the users screen, a decision was made to use html2canvas (https://html2canvas.hertzen.com/). This tool allows a text-representation of the website to be created and sent to our server, where we could take the text capture and paste it in a browser to see what the victim was looking at the time of capture. Matching this up the capture text would give us a clear view of what the user was doing at the time of text-capture.
 
 #### Storing the captured data
+dynamoDB stuff
 
 #### Attack vector
+talk about using a firefox extension + word per minute stuff 
+
+### What is still missing
+
 
 ### Contributors
 Ageu Nunes - anunes2  
