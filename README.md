@@ -21,8 +21,13 @@ dynamoDB stuff
 #### Attack vector
 We decided to disguise the keylogger as a "word-per-minute" counter browser extension. The Firefox browser has support for custom extensions and is a popular web browser, so we chose to develop the keylogger for this browser. Ideally, what this extension would do is present a simple graphic overlay on top of the current brower session that is refreshed every 60 seconds with the user's current WPM. Behind the scenes, the keylogger would be recording key strokes and taking screenshots as detailed above. 
 
-### What is still missing
 
+### What is still missing
+While we had great success in building the different pieces (a keylogger, a screenshot grabber, a database storage solution and a words-per-minute counter), getting the pieces together to actually make an extension worked well. While we were able to send the logged keystrokes and screenshots to the database, there were some websites (for example, Bank of America and Facebook were 2 I tried) that did not allow the screenshots to be grabbed and sent (though logging keystrokes was not an issue). 
+
+We also were not able to fully combine the words-per-minute extension with the screenshot/keystroke/DynamoDB portion. This was due purely to a lack of time to do proper integration testing. Due to this, we also did not attempt to load it as a temporary extension to Firefox (where you can load your own extensions to your own machine). 
+
+Obviously, we didn't attempt to upload this extension to Firefox (we prefer to avoid making any lists).
 
 ### Contributors
 Ageu Nunes - anunes2  
