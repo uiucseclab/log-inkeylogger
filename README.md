@@ -24,21 +24,21 @@ We decided to disguise the keylogger as a "word-per-minute" counter browser exte
 #### Testing Steps
 If you would like to test the extension (keylog), there are a few setup items that should be considered:
 
-##### the extension assumes you have an AWS account, and have the following things set up:
-###### an AWS cognito identity pool with unauthenticated roles allowed, and where the IAM roles have full permissions for DynamoDB
-###### a DynamoDB table called "key_data", with a "UserID" primary key of type String, and a "Timestamp" secondary key of type String
-##### if these things are ready to go, the only configuration necessary is to replace the IdentityPoolId on line 44 of background.js with the IdentityPoolId corresponding to the AWS Cognito pool with DynamyDB permissions (the IdentityPool is used to generate unique IdentityId's that are used as UserID's for each victim's Firefox instance)
-##### of course, some regions might need to be changed, namely lines 19, 39 and 70, if they don't match with our example
-##### as of now, the code is configured to work with our group's AWS account, and successfully logs basic keylogged data to our DynamoDB table. However, we ran out of time to actually write a script to query the table, so there is no way for you to view the keylogged data. That's why, if desired, you could set it up with your own AWS account so that you can see the database storage aspect "in action"
+* the extension assumes you have an AWS account, and have the following things set up:
+** an AWS cognito identity pool with unauthenticated roles allowed, and where the IAM roles have full permissions for DynamoDB
+** a DynamoDB table called "key_data", with a "UserID" primary key of type String, and a "Timestamp" secondary key of type String
+* if these things are ready to go, the only configuration necessary is to replace the IdentityPoolId on line 44 of background.js with the IdentityPoolId corresponding to the AWS Cognito pool with DynamyDB permissions (the IdentityPool is used to generate unique IdentityId's that are used as UserID's for each victim's Firefox instance)
+* of course, some regions might need to be changed, namely lines 19, 39 and 70, if they don't match with our example
+* as of now, the code is configured to work with our group's AWS account, and successfully logs basic keylogged data to our DynamoDB table. However, we ran out of time to actually write a script to query the table, so there is no way for you to view the keylogged data. That's why, if desired, you could set it up with your own AWS account so that you can see the database storage aspect "in action"
 
 Once that is all set up (or if you wish to leave the extension as it is), the steps to test are as follows:
 
-##### open Firefox and navigate to "about:debugging"
-##### click "load temporary add-on"
-##### select any of the files in the "keylog" folder (background.js, for example)
-##### navigate to any webpage (google works well, but really anything will do)
-##### start typing, and when you would like a chunk of keylogged text to be sent to the dynamoDB table, hit either Tab or Enter
-##### this works with multiple tabs open, etc.
+* open Firefox and navigate to "about:debugging"
+* click "load temporary add-on"
+* select any of the files in the "keylog" folder (background.js, for example)
+* navigate to any webpage (google works well, but really anything will do)
+* start typing, and when you would like a chunk of keylogged text to be sent to the dynamoDB table, hit either Tab or Enter
+* this works with multiple tabs open, etc.
 
 ### What is still missing
 While we had great success in building the different pieces (a keylogger, a screenshot grabber, a database storage solution and a words-per-minute counter), getting the pieces together to actually make an extension worked well. While we were able to send the logged keystrokes and screenshots to the database, there were some websites (for example, Bank of America and Facebook were 2 I tried) that did not allow the screenshots to be grabbed and sent (though logging keystrokes was not an issue). 
