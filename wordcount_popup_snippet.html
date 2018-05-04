@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+<style>
+/* Popup container - can be anything you want */
+.wc_popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.wc_popup .popuptext {
+    visibility: visible;
+    width: 25px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 8px;
+    position: fixed;
+    z-index: 1;
+    bottom: 5%;
+    right: 5%;
+}
+
+</style>
+</head>
+<body style="text-align:center">
+
+<div class="wc_popup">
+<div class="popuptext" id="wc_numbers">0</div>
+</div>
+
+<form>
+    Test Field:<br>
+  <input type="text" name="testField"><br>  
+</form>
+
+<script>
+var strings = [];
+
+window.onkeyup = function(e) {
+    var key = e.keyCode ? e.keyCode : e.which;
+
+    strings += String.fromCharCode(key);
+}
+
+function WordCount() { 
+    var popup = document.getElementById("wc_numbers");
+    oneString = strings.toString();
+    var stringLength = oneString.split(" ").length;
+    document.getElementById("wc_numbers").innerHTML = stringLength;
+    strings = [];
+}
+
+setInterval(WordCount, 60000);
+</script>
+
+</body>
+</html>

