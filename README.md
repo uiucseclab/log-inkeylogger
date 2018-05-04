@@ -19,7 +19,7 @@ Due to the difficulty and bandwidth required to send a screenshot of the users s
 dynamoDB stuff
 
 #### Attack vector
-talk about using a firefox extension + word per minute stuff 
+We decided to disguise the keylogger as a "word-per-minute" counter browser extension. The Firefox browser has support for custom extensions and is a popular web browser, so we chose to develop the keylogger for this browser. Ideally, what this extension would do is present a simple graphic overlay on top of the current brower session that is refreshed every 60 seconds with the user's current WPM. Behind the scenes, the keylogger would be recording key strokes and taking screenshots as detailed above. 
 
 ### What is still missing
 
