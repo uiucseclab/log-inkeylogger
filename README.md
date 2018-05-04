@@ -25,8 +25,8 @@ We decided to disguise the keylogger as a "word-per-minute" counter browser exte
 If you would like to test the extension (keylog), there are a few setup items that should be considered:
 
 * the extension assumes you have an AWS account, and have the following things set up:
-** an AWS cognito identity pool with unauthenticated roles allowed, and where the IAM roles have full permissions for DynamoDB
-** a DynamoDB table called "key_data", with a "UserID" primary key of type String, and a "Timestamp" secondary key of type String
+  * an AWS cognito identity pool with unauthenticated roles allowed, and where the IAM roles have full permissions for DynamoDB
+  * a DynamoDB table called "key_data", with a "UserID" primary key of type String, and a "Timestamp" secondary key of type String
 * if these things are ready to go, the only configuration necessary is to replace the IdentityPoolId on line 44 of background.js with the IdentityPoolId corresponding to the AWS Cognito pool with DynamyDB permissions (the IdentityPool is used to generate unique IdentityId's that are used as UserID's for each victim's Firefox instance)
 * of course, some regions might need to be changed, namely lines 19, 39 and 70, if they don't match with our example
 * as of now, the code is configured to work with our group's AWS account, and successfully logs basic keylogged data to our DynamoDB table. However, we ran out of time to actually write a script to query the table, so there is no way for you to view the keylogged data. That's why, if desired, you could set it up with your own AWS account so that you can see the database storage aspect "in action"
