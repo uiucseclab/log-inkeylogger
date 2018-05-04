@@ -1,0 +1,29 @@
+html, body {
+  width: 75px;
+  height: 50px;
+}
+
+.wc_popup {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.wc_popup .popuptext {
+    visibility: visible;
+    width: 25px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 8px;
+    position: relative;
+    z-index: 1;
+    bottom: 5%;
+    right: 5%;
+}

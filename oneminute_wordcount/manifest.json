@@ -1,0 +1,20 @@
+{
+
+  "description": "counts how many words (spaces) typed every 60 seconds",
+  "manifest_version": 2,
+  "name": "oneminute_wordcount",
+  "version": "1.0",
+  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/borderify",
+  "icons": {
+    "48": "icons/border-48.png"
+  },
+
+  "browser_action": {
+    "default_popup": "popup/wc_popup.html"
+  },
+
+  "permissions": [
+    "activeTab"
+  ]
+
+}
